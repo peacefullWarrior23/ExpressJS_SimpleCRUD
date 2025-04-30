@@ -2,3 +2,4 @@ node_modules
 key
 aws
 awscliv2.zip
+.env
