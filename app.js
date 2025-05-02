@@ -34,10 +34,6 @@ mongoose.connect(mongoDB_connect_url)
     console.log("Connection to DB failed")
 });
 
-app.listen(port, () => {
-    console.log("Express app is now running on port 3000");
-});
-
 app.get('/', (req, res) => {
     res.send("Hello from Express API <br><a href='/auth/google'> Sign in with Google");
 });
@@ -71,3 +67,5 @@ app.get('/logout',(req,res)=>{
 app.get('/auth/failed', (req,res)=>{
     res.send('Failed to Authenticate :(')
 })
+
+module.exports = app
