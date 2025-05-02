@@ -10,6 +10,7 @@ const port = process.env.PORT || 3000;
 require('dotenv').config();
 
 const SESSION_SECRET= process.env.SESSION_SECRET;
+const mongoDB_connect_url = process.env.MONGODB_CONNECT_URL;
 require('./auth')
 
 //Add support for API middlewares to work with JSON and  url encoded inputs
@@ -25,7 +26,7 @@ function isLoggedIn(req,res,next){
     req.user ? next() : res.sendStatus(401);
 }
 
-mongoose.connect("mongodb+srv://mongoDeveloper:5uoQwXkk2PC5CaAx@api-cluster.xgb01zu.mongodb.net/Node-API?retryWrites=true&w=majority&appName=API-Cluster")
+mongoose.connect(mongoDB_connect_url)
 .then(()=>{
     console.log("Connected to the DB")
 })
