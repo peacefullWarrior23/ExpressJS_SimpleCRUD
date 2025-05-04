@@ -21,6 +21,15 @@ const getProduct = async (req,res) =>{
 
 const addProduct = async (req,res) => {
     try {
+        const body = req.body
+        if(!body){
+            return res.status(400).json("Bad input product data")
+        }
+        const contentType = req.headers['content-type']
+        console.log(`Content type for post : ${contentType}`)
+        if(!contentType || !contentType.includes('json')){
+            return res.status(415).json("Bad input data format")
+        }
         const product = await Product.create(req.body)
         res.status(200).json(product)
     } catch (error) {
